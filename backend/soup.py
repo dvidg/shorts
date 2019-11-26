@@ -37,10 +37,24 @@ for i in range(50): #126 possible
 
 allCategories = list(dict.fromkeys(allCategories))
 
+c.execute("""CREATE TABLE mainCategories
+                 (categories)""")
+
+
+
 for x in allCategories:
 	f.write(x+"\n")
+	c.execute("insert into mainCategories (categories) values (?)",
+            (x,))
 
 f.close()
+
+
+c.execute("""CREATE TABLE mytable
+                 (categories)""")
+
+
+
 
 print("done")
 	
