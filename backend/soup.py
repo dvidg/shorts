@@ -21,5 +21,10 @@ for i in range(1): #126 possible
 	"""
 	productLinks = [div.a for div in soup.findAll('div', attrs={'class' : "bem-product-thumb--grid"})]
 	for link in productLinks:
-		print(link['href'])
-
+		productPage = requests.get(link['href'])
+		newSoup = bs(productPage.text, 'html.parser')
+		productType = [li.a['title'] for li in newSoup.findAll('li', attrs={'class' : "bem-breadcrumb__list-item"})]
+		print(productType)
+		
+	
+	
