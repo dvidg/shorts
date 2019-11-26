@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup as bs
 conn = sqlite3.connect('scrape.db')
 c = conn.cursor()
 
+# Open webpage
 url = "https://www.wiggle.co.uk/cycle/clothing/"
 page = requests.get(url)
 
