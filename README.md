@@ -11,3 +11,4 @@ frontend:
 
 Tech Stack:
 	-> sqlite3
+	-> beautifulsoup (python3-bs4)
