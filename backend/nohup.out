@@ -1,36 +1,54 @@
 0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
 Traceback (most recent call last):
-  File "soup.py", line 30, in <module>
-    productPage = requests.get(link['href'])
-  File "/home/pi/.local/lib/python3.5/site-packages/requests/api.py", line 75, in get
-    return request('get', url, params=params, **kwargs)
-  File "/home/pi/.local/lib/python3.5/site-packages/requests/api.py", line 60, in request
-    return session.request(method=method, url=url, **kwargs)
-  File "/home/pi/.local/lib/python3.5/site-packages/requests/sessions.py", line 533, in request
-    resp = self.send(prep, **send_kwargs)
-  File "/home/pi/.local/lib/python3.5/site-packages/requests/sessions.py", line 646, in send
-    r = adapter.send(request, **kwargs)
-  File "/home/pi/.local/lib/python3.5/site-packages/requests/adapters.py", line 449, in send
-    timeout=timeout
-  File "/home/pi/.local/lib/python3.5/site-packages/urllib3/connectionpool.py", line 672, in urlopen
-    chunked=chunked,
-  File "/home/pi/.local/lib/python3.5/site-packages/urllib3/connectionpool.py", line 421, in _make_request
-    six.raise_from(e, None)
-  File "<string>", line 3, in raise_from
-  File "/home/pi/.local/lib/python3.5/site-packages/urllib3/connectionpool.py", line 416, in _make_request
-    httplib_response = conn.getresponse()
-  File "/usr/lib/python3.5/http/client.py", line 1198, in getresponse
-    response.begin()
-  File "/usr/lib/python3.5/http/client.py", line 297, in begin
-    version, status, reason = self._read_status()
-  File "/usr/lib/python3.5/http/client.py", line 258, in _read_status
-    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
-  File "/usr/lib/python3.5/socket.py", line 576, in readinto
-    return self._sock.recv_into(b)
-  File "/usr/lib/python3.5/ssl.py", line 937, in recv_into
-    return self.read(nbytes, buffer)
-  File "/usr/lib/python3.5/ssl.py", line 799, in read
-    return self._sslobj.read(len, buffer)
-  File "/usr/lib/python3.5/ssl.py", line 583, in read
-    v = self._sslobj.read(len, buffer)
-KeyboardInterrupt
+  File "soup.py", line 41, in <module>
+    (categories)""")
+sqlite3.OperationalError: table mainCategories already exists
