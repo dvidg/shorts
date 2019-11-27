@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup as bs
 # Open Database
 conn = sqlite3.connect('scrape.db')
 c = conn.cursor()
+c.execute("""DROP TABLE IF EXISTS mainCategories""")
 
 # Open webpage
 baseURL = "https://www.wiggle.co.uk/cycle/clothing/?g=" # base url ?g=1
@@ -36,6 +37,8 @@ for i in range(50): #126 possible
 		allCategories.append(productType)
 
 allCategories = list(dict.fromkeys(allCategories))
+
+
 
 c.execute("""CREATE TABLE mainCategories
                  (categories)""")

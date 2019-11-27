@@ -52,3 +52,18 @@ Traceback (most recent call last):
   File "soup.py", line 41, in <module>
     (categories)""")
 sqlite3.OperationalError: table mainCategories already exists
+0
+Traceback (most recent call last):
+  File "getCategories.py", line 23, in <module>
+    soup = bs(page.text, 'html.parser')
+  File "/usr/lib/python3/dist-packages/bs4/__init__.py", line 228, in __init__
+    self._feed()
+  File "/usr/lib/python3/dist-packages/bs4/__init__.py", line 289, in _feed
+    self.builder.feed(self.markup)
+  File "/usr/lib/python3/dist-packages/bs4/builder/_htmlparser.py", line 167, in feed
+    parser.feed(markup)
+  File "/usr/lib/python3.5/html/parser.py", line 111, in feed
+    self.goahead(0)
+  File "/usr/lib/python3.5/html/parser.py", line 170, in goahead
+    if starttagopen.match(rawdata, i): # < + letter
+KeyboardInterrupt
