@@ -50,11 +50,6 @@ for x in allCategories:
 f.close()
 
 
-c.execute("""CREATE TABLE mytable
-                 (categories)""")
-
-
-
 
 print("done")
 	
