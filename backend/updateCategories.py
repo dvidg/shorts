@@ -16,6 +16,7 @@ f = open("allCategories.txt","w+")
 
 # Open each page of items
 allCategories = []
+shortCategories=[]
 
 for i in range(50): #126 possible
 	print(i)
@@ -33,27 +34,27 @@ for i in range(50): #126 possible
 
 		# Get ['Home', 'Clothing', 'Socks and Underwear', 'Socks']
 		productType = str([li.a['title'] for li in newSoup.findAll('li', attrs={'class' : "bem-breadcrumb__list-item"})])
-		
+		shortCategories.append(productType[-2:])
 		allCategories.append(productType)
 
+shortCategories = list(dict.fromkeys(shortCategories))
 allCategories = list(dict.fromkeys(allCategories))
 
 
+try:
+	c.execute("""CREATE TABLE mainCategories
+                 (where,what);""")
 
-c.execute("""CREATE TABLE mainCategories
-                 (categories)""")
-
-
-
-for x in allCategories:
-	f.write(x+"\n")
-	c.execute("insert into mainCategories (categories) values (?)",
-            (x,))
+	for x in shortCategories:
+		f.write(x+"\n")
+		c.execute("""INSERT INTO mainCategories VALUES (?,?);""",
+            (x[0],x[1]))
+except:
+	print("error")
 
 f.close()
-
+conn.commit()
 
 
 print("done")
-	
 	
