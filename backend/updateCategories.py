@@ -1,5 +1,6 @@
 import sqlite3
 import requests
+import ast
 from bs4 import BeautifulSoup as bs
 
 # Open Database
@@ -33,12 +34,9 @@ for i in range(1): #126 possible
 		newSoup = bs(productPage.text, 'html.parser')
 
 		# Get ['Home', 'Clothing', 'Socks and Underwear', 'Socks']
-		productType = str([li.a['title'] for li in newSoup.findAll('li', attrs={'class' : "bem-breadcrumb__list-item"})])
-		print(productType[0])
-		print(productType)
-		print(productType[-2:])
+		productType = [li.a['title'] for li in newSoup.findAll('li', attrs={'class' : "bem-breadcrumb__list-item"})]
 		shortCategories.append(productType[-2:])
-		allCategories.append(productType)
+		#allCategories.append(productType)
 
 print(shortCategories)
 shortCategories = list(dict.fromkeys(shortCategories))
