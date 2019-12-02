@@ -38,17 +38,17 @@ for i in range(1): #126 possible
 		shortCategories.append(productType[-2:])
 		#allCategories.append(productType)
 
-print(shortCategories)
-shortCategories = list(dict.fromkeys(shortCategories))
+shortCategories =[list(x) for x in set(tuple(x) for x in shortCategories)]
 #allCategories = list(dict.fromkeys(allCategories))
-
-print(shortCategories)
 
 c.execute("""CREATE TABLE mainCategories (body, item)""")
 
 for x in shortCategories:
-	f.write(x[0] + x[1] +"\n")
-	c.execute("""INSERT INTO mainCategories (body, item) VALUES (?, ?)""", (x[0],x[1]))
+	try:
+		f.write(x[0] + x[1] +"\n")
+		c.execute("""INSERT INTO mainCategories (body, item) VALUES (?, ?)""", (x[0],x[1]))
+	except:
+		pass
 
 f.close()
 conn.commit()
