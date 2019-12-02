@@ -11,7 +11,6 @@ c.execute("""DROP TABLE IF EXISTS mainCategories""")
 # Open webpage
 baseURL = "https://www.wiggle.co.uk/cycle/clothing/?g=" # base url ?g=1
 
-
 f = open("allCategories.txt","w+")
 
 
@@ -19,7 +18,7 @@ f = open("allCategories.txt","w+")
 allCategories = []
 shortCategories=[]
 
-for i in range(1): #126 possible
+for i in range(50): #126 possible
 	print(i)
 	url = baseURL + str(i*48+1)
 	page = requests.get(url)	
