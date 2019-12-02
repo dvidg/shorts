@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup as bs
 # Open Database
 conn = sqlite3.connect('scrape.db')
 c = conn.cursor()
-c.execute("""DROP TABLE IF EXISTS mainCategories""")
+#c.execute("""DROP TABLE IF EXISTS mainCategories""")
 
 # Open webpage
 baseURL = "https://www.wiggle.co.uk/cycle/clothing/?g=" # base url ?g=1
@@ -40,17 +40,17 @@ for i in range(50): #126 possible
 shortCategories =[list(x) for x in set(tuple(x) for x in shortCategories)]
 #allCategories = list(dict.fromkeys(allCategories))
 
-c.execute("""CREATE TABLE mainCategories (body, item)""")
+#c.execute("""CREATE TABLE mainCategories (body, item)""")
 
 for x in shortCategories:
 	try:
 		f.write(x[0] + x[1] +"\n")
-		c.execute("""INSERT INTO mainCategories (body, item) VALUES (?, ?)""", (x[0],x[1]))
+#		c.execute("""INSERT INTO mainCategories (body, item) VALUES (?, ?)""", (x[0],x[1]))
 	except:
 		pass
 
 f.close()
-conn.commit()
+#conn.commit()
 
 
 print("done")
