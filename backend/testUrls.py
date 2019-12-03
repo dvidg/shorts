@@ -19,4 +19,7 @@ def testURL(category):
 
 [testURL(i) for i in items]
 
-print(failedList)
+if(len(failedList)==0):
+	print("no failures")
+else:
+	print(failedList)
