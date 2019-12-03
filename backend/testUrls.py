@@ -15,7 +15,7 @@ def testURL(category):
 	url = "https://www.wiggle.co.uk/cycle/"+category
 	r=requests.get(url)
 	if r.status_code != 200:
-		failedList.append(category)
+		failedList.append(category,r.status_code)
 
 [testURL(i) for i in items]
 
