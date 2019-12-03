@@ -31,4 +31,5 @@ if(len(failedList)==0):
 else:
 	print(failedList)
 
+c.execute("""DROP TABLE tempMainCategories;""")
 conn.commit()
