@@ -1,5 +1,6 @@
 import requests
 import sqlite3
+from bs4 import BeautifulSoup as bs
 
 conn = sqlite3.connect('scrape.db')
 c = conn.cursor()
@@ -9,7 +10,7 @@ items=c.fetchall()
 items=[i[0] for i in items]
 items = [e.replace(" ", "-") for e in items]
 
-failedList = []
+urlList = []
 
 def testURL(category):
 	url = "https://www.wiggle.co.uk/cycle/"+category
