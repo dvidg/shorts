@@ -9,8 +9,12 @@ from bs4 import BeautifulSoup as bs
 conn = sqlite3.connect('scrape.db')
 c = conn.cursor()
 
+c.execute("""DROP TABLE IF EXISTS categoryURLs""")
+
 c.execute("""SELECT item,URL FROM mainCategories;""")
 urls=c.fetchall()
+
+c.execute("""CREATE TABLE categoryURLs (category, URLs)""")
 
 itemNumber = [i*48+1 for i in range(50)]
 pages = ["/?g="+str(i) for i in itemNumber] #/?g=1, /?g=49, /?g=97...
@@ -28,7 +32,10 @@ for i in [urls[-1]]: #[urls[-1]] for testing
 	# lastCat
 	lastCats = [i for i in itemNumber if i > numItems]
 	longUrls = [i+j for j in [pages[-len(lastCats)-1]]]
-	dictionary[cats[0]] = longUrls
+	
+	c.execute("""INSERT INTO categoryURLs (category, URLs) VALUES (?, ?)""", (cats[0],str(longUrls)))
 	cats.pop(0)
 
+conn.commit()
 
+	
