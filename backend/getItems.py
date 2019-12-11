@@ -1,5 +1,6 @@
 """
 	Get items from each page of the URL
+
 """
 import requests
 import sqlite3
