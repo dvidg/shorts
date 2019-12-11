@@ -15,8 +15,10 @@ urls=c.fetchall()
 pages = ["/?g="+str(i*48+1) for i in range(5)] #/?g=1, /?g=49, /?g=97...
 cats=[i[0] for i in urls]
 urls=[i[1] for i in urls]
+dictionary={}
 
-longUrls=[i+j for i in urls for j in pages]
-
-print(longUrls)
+for i in urls:
+	longUrls = [i+j for j in pages]
+	dictionary[cats[0]] = longUrls
+	cats.pop(0)
 
