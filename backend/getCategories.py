@@ -1,3 +1,6 @@
+"""
+	Update scrape.db with categories from scraping Wiggle
+"""
 import sqlite3
 import requests
 import ast
@@ -6,7 +9,7 @@ from bs4 import BeautifulSoup as bs
 # Open Database
 conn = sqlite3.connect('scrape.db')
 c = conn.cursor()
-#c.execute("""DROP TABLE IF EXISTS mainCategories""")
+c.execute("""DROP TABLE IF EXISTS mainCategories""")
 
 # Open webpage
 baseURL = "https://www.wiggle.co.uk/cycle/clothing/?g=" # base url ?g=1
@@ -35,22 +38,22 @@ for i in range(50): #126 possible
 		# Get ['Home', 'Clothing', 'Socks and Underwear', 'Socks']
 		productType = [li.a['title'] for li in newSoup.findAll('li', attrs={'class' : "bem-breadcrumb__list-item"})]
 		shortCategories.append(productType[-2:])
-		#allCategories.append(productType)
+		allCategories.append(productType)
 
 shortCategories =[list(x) for x in set(tuple(x) for x in shortCategories)]
-#allCategories = list(dict.fromkeys(allCategories))
+allCategories = list(dict.fromkeys(allCategories))
 
-#c.execute("""CREATE TABLE mainCategories (body, item)""")
+c.execute("""CREATE TABLE mainCategories (body, item)""")
 
 for x in shortCategories:
 	try:
 		f.write(x[0] + x[1] +"\n")
-#		c.execute("""INSERT INTO mainCategories (body, item) VALUES (?, ?)""", (x[0],x[1]))
+		c.execute("""INSERT INTO mainCategories (body, item) VALUES (?, ?)""", (x[0],x[1]))
 	except:
 		pass
 
 f.close()
-#conn.commit()
+conn.commit()
 
 
 print("done")

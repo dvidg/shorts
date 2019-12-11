@@ -1,3 +1,6 @@
+"""
+	Get items from each page of the URL
+"""
 import requests
 import sqlite3
 from bs4 import BeautifulSoup as bs

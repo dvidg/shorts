@@ -1,8 +1,12 @@
+"""
+	Test each URL	
+"""
 import requests
 import sqlite3
 
 conn = sqlite3.connect('scrape.db')
 c = conn.cursor()
+c.execute("""DROP TABLE IF EXISTS tempMainCategories""")
 
 c.execute("""SELECT * FROM mainCategories;""")
 items=c.fetchall()
