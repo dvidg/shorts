@@ -22,8 +22,9 @@ cats=[i[0] for i in urls]
 urls=[i[1] for i in urls]
 dictionary={}
 
-for i in [urls[-1]]: #[urls[-1]] for testing
+for i in urls: #[urls[-1]] for testing
 	# i is a https://www.wiggle.co.uk/cycle/Beanies
+	print(i)
 	page = requests.get(i)
 	soup = bs(page.text, "html.parser")
 	itemNumString = soup.find("div", {"class":"bem-paginator__text-block"}).text	
@@ -31,9 +32,9 @@ for i in [urls[-1]]: #[urls[-1]] for testing
 
 	# lastCat
 	lastCats = [i for i in itemNumber if i > numItems]
-	longUrls = [i+j for j in [pages[-len(lastCats)-1]]]
+	longUrls = [i+j for j in pages[:-len(lastCats)-1]]
 	
-	c.execute("""INSERT INTO categoryURLs (category, URLs) VALUES (?, ?)""", (cats[0],str(longUrls)))
+	c.execute("""INSERT INTO categoryURLs (category, URLs) VALUES (?, ?)""", (cats[0],str(longUrls).strip('[]')))
 	cats.pop(0)
 
 conn.commit()
