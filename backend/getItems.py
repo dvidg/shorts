@@ -22,7 +22,7 @@ for i in [urls[-1]]: #[urls[-1]] for testing
 	page = requests.get(i)
 	soup = bs(page.text, "html.parser")
 	itemNumString = soup.find("div", {"class":"bem-paginator__text-block"}).text	
-	numItems = itemNumString.strip().split()[-1] # number of items
+	numItems = int(itemNumString.strip().split()[-1])# number of items
 	print(numItems)
 """	
 	longUrls = [i+j for j in pages]
