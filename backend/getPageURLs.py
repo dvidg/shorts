@@ -34,7 +34,7 @@ for i in urls: #[urls[-1]] for testing
 	lastCats = [i for i in itemNumber if i > numItems]
 	longUrls = [i+j for j in pages[:-len(lastCats)]]
 	
-	c.execute("""INSERT INTO categoryURLs (category, URLs) VALUES (?, ?)""", (cats[0],str(longUrls).strip('[]')))
+	c.execute("""INSERT INTO categoryURLs (category, URLs) VALUES (?, ?)""", (cats[0],str(longUrls)))
 	cats.pop(0)
 
 conn.commit()	

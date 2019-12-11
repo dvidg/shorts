@@ -4,37 +4,21 @@
 """
 import requests
 import sqlite3
+import ast
 from bs4 import BeautifulSoup as bs
 
 conn = sqlite3.connect('scrape.db')
 c = conn.cursor()
 
-c.execute("""DROP TABLE IF EXISTS categoryURLs""")
+#c.execute("""INSERT INTO categoryURLs (category, URLs) VALUES (?, ?)""", (cats[0],str(longUrls).strip('[]')))
 
-c.execute("""SELECT item,URL FROM mainCategories;""")
-urls=c.fetchall()
 
-c.execute("""CREATE TABLE categoryURLs (category, URLs)""")
+c.execute("""select * from categoryURLs;""")
+urls=c.fetchone()
+cats=urls[0]
+urlList=ast.literal_eval(urls[1])
 
-itemNumber = [i*48+1 for i in range(50)]
-pages = ["/?g="+str(i) for i in itemNumber] #/?g=1, /?g=49, /?g=97...
-cats=[i[0] for i in urls]
-urls=[i[1] for i in urls]
-dictionary={}
-
-for i in urls: #[urls[-1]] for testing
-	# i is a https://www.wiggle.co.uk/cycle/Beanies
-	print(i)
-	page = requests.get(i)
-	soup = bs(page.text, "html.parser")
-	itemNumString = soup.find("div", {"class":"bem-paginator__text-block"}).text	
-	numItems = int(itemNumString.strip().split()[-1]) # number of items
-
-	# lastCat
-	lastCats = [i for i in itemNumber if i > numItems]
-	longUrls = [i+j for j in pages[:-len(lastCats)]]
-	
-	c.execute("""INSERT INTO categoryURLs (category, URLs) VALUES (?, ?)""", (cats[0],str(longUrls).strip('[]')))
-	cats.pop(0)
+print(urlList[0])
+print(cats)
 
 conn.commit()	
