@@ -13,12 +13,9 @@ c = conn.cursor()
 #c.execute("""INSERT INTO categoryURLs (category, URLs) VALUES (?, ?)""", (cats[0],str(longUrls).strip('[]')))
 
 
-c.execute("""select * from categoryURLs;""")
-urls=c.fetchone()
-cats=urls[0]
-urlList=ast.literal_eval(urls[1])
+c.execute("""select category from categoryURLs;""")
+cats=[i[0] for i in c.fetchall()]
 
-print(urlList[0])
 print(cats)
 
 conn.commit()	
