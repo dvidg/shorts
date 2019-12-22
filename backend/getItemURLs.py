@@ -17,7 +17,8 @@ productList = []
 def getURL(url):
 	page = requests.get(url)	
 	soup = bs(page.text, 'html.parser')
-	productLinks = [img.src for a in soup.findAll('a', attrs={'class' : "bem-product-thumb__image-link--grid"})]
+	productLinks = [a.findChildren("img") for a in soup.findAll('a', attrs={'class' : "bem-product-thumb__image-link--grid"})]
+	print(productLinks)
 	return productLinks
 
 
@@ -33,7 +34,7 @@ for category in cats:
 	urls = ast.literal_eval([i[0] for i in c.fetchall()][0])
 	
 	if (category == "Baggy-Shorts"):
-		productList.append([getUrl(url) for i in urls])
-		print(productList)
+		productList.append([getURL(url) for url in urls])
+		# print(productList)
 
 conn.commit()	
