@@ -36,4 +36,4 @@ else:
 	print(failedList)
 
 c.execute("""DROP TABLE tempMainCategories;""")
-conn.commit()
+#conn.commit()

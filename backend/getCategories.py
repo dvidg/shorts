@@ -53,7 +53,7 @@ for x in shortCategories:
 		pass
 
 f.close()
-conn.commit()
+#conn.commit()
 
 
 print("done")
