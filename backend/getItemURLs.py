@@ -21,7 +21,7 @@ def getURL(url):
 	productLinks = [a.findChildren("img")[0] for a in soup.findAll('a', attrs={'class' : "bem-product-thumb__image-link--grid"})]
 	for x in productLinks:
 		productURLs.append(x["src"])
-	return productURLs
+	return productURLs # TODO: why is this in so many ]]]
 
 
 
