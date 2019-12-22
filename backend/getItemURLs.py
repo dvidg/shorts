@@ -19,8 +19,8 @@ cats=[i[0] for i in c.fetchall()]
 # Remove [] around cats when moving away from single testing
 for category in [cats[2]]:
 	c.execute("""SELECT URLs FROM categoryURLs WHERE category=?""", (category,))
-	urls = c.fetchall()[0][0]
-	print(urls)
+	urls = ast.literal_eval([i[0] for i in c.fetchall()][0])
+	
 
 
 conn.commit()	
