@@ -37,4 +37,4 @@ for i in urls: #[urls[-1]] for testing
 	c.execute("""INSERT INTO categoryURLs (category, URLs) VALUES (?, ?)""", (cats[0],str(longUrls)))
 	cats.pop(0)
 
-conn.commit()	
+#conn.commit()	
