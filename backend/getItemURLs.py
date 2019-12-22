@@ -10,6 +10,8 @@ from bs4 import BeautifulSoup as bs
 conn = sqlite3.connect('scrape.db')
 c = conn.cursor()
 
+productList = []
+
 #c.execute("""INSERT INTO categoryURLs (category, URLs) VALUES (?, ?)""", (cats[0],str(longUrls).strip('[]')))
 
 def getURL(localURL):
@@ -31,7 +33,7 @@ for category in cats:
 	urls = ast.literal_eval([i[0] for i in c.fetchall()][0])
 	
 	if (category == "Baggy-Shorts"):
-
+		productList.append([])
 		
 
 conn.commit()	
