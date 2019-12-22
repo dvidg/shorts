@@ -15,11 +15,13 @@ productList = []
 #c.execute("""INSERT INTO categoryURLs (category, URLs) VALUES (?, ?)""", (cats[0],str(longUrls).strip('[]')))
 
 def getURL(url):
+	productURLs = []
 	page = requests.get(url)	
 	soup = bs(page.text, 'html.parser')
-	productLinks = [a.findChildren("img") for a in soup.findAll('a', attrs={'class' : "bem-product-thumb__image-link--grid"})]
-	print(productLinks)
-	return productLinks
+	productLinks = [a.findChildren("img")[0] for a in soup.findAll('a', attrs={'class' : "bem-product-thumb__image-link--grid"})]
+	for x in productLinks:
+		productURLs.append(x["src"])
+	return productURLs
 
 
 
@@ -35,6 +37,6 @@ for category in cats:
 	
 	if (category == "Baggy-Shorts"):
 		productList.append([getURL(url) for url in urls])
-		# print(productList)
+		print(productList)
 
 conn.commit()	
