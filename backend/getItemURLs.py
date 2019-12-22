@@ -16,7 +16,9 @@ c = conn.cursor()
 c.execute("""SELECT category FROM categoryURLs;""")
 cats=[i[0] for i in c.fetchall()]
 
-for category in cats[1]:
+# Remove [] around cats when moving away from single testing
+for category in [cats[1]]:
+	print(category)
 	c.execute("""SELECT URLs FROM categoryURLs WHERE category=?""", (category,))
 	urls = c.fetchall()
 	print(urls)
