@@ -14,3 +14,5 @@ Tech Stack:
 	-> beautifulsoup (python3-bs4)
 
 #TODO - build tree of options
+
+pip3 install requests
