@@ -32,14 +32,12 @@ for category in cats:
 	c.execute("""SELECT URLs FROM categoryURLs WHERE category=?""", (category,))
 	urls = ast.literal_eval([i[0] for i in c.fetchall()][0])
 	
-	if (category == "Baggy-Shorts"):		
-		if "-" in category:
-			category = "\""+category+"\""
-		c.execute("""ALTER TABLE itemURLs ADD COLUMN """+category+""";""")
-		productList = [getURL(url) for url in urls]
-		productLinks = [item for sublist in productList for item in sublist]
-		for x in productLinks:
-			c.execute("""INSERT INTO itemURLs ("""+category+""") VALUES (?)""", (str(x),))
-		print(productLinks)
+	if "-" in category:
+		category = "\""+category+"\""
+	c.execute("""ALTER TABLE itemURLs ADD COLUMN """+category+""";""")
+	productList = [getURL(url) for url in urls]
+	productLinks = [item for sublist in productList for item in sublist]
+	for x in productLinks:
+		c.execute("""INSERT INTO itemURLs ("""+category+""") VALUES (?)""", (str(x),))
 
 conn.commit()	
