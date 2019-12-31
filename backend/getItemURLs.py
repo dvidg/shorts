@@ -33,12 +33,13 @@ for category in cats:
 	urls = ast.literal_eval([i[0] for i in c.fetchall()][0])
 	
 	if (category == "Baggy-Shorts"):		
-		c.execute("""DROP TABLE IF EXISTS """+category)
-		c.execute("""CREATE TABLE """+category+""" (url)""")
+		if "-" in category:
+			category = "\""+category+"\""
+		c.execute("""ALTER TABLE itemURLs ADD COLUMN """+category+""";""")
 		productList = [getURL(url) for url in urls]
 		productLinks = [item for sublist in productList for item in sublist]
-		c.execute("""INSERT INTO categoryURLs (URLs) VALUES (?)""", (productLinks))
-		
+		for x in productLinks:
+			c.execute("""INSERT INTO itemURLs ("""+category+""") VALUES ("""+x+""");""")
 		print(productLinks)
 
 conn.commit()	
