@@ -18,10 +18,9 @@ def getURL(url):
 	productURLs = []
 	page = requests.get(url)	
 	soup = bs(page.text, 'html.parser')
-	productLinks = [a.findChildren("img")[0] for a in soup.findAll('a', attrs={'class' : "bem-product-thumb__image-link--grid"})]
-	for x in productLinks:
-		productURLs.append(x["src"])
-	return productURLs # TODO: why is this in so many ]]]
+	#productLinks = [a.findChildren("img")[0] for a in soup.findAll('a', attrs={'class' : "bem-product-thumb__image-link--grid"})]
+	productLinks = [a['href'] for a in soup.findAll('a', attrs={'class':"bem-product-thumb__name--grid"})]
+	return productLinks # TODO: why is this in so many ]]]
 
 
 
