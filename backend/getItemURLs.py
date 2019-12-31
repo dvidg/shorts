@@ -33,8 +33,8 @@ for category in cats:
 	urls = ast.literal_eval([i[0] for i in c.fetchall()][0])
 	
 	if (category == "Baggy-Shorts"):
-		productList = []
-		productList.append([getURL(url) for url in urls])
+		
+		productList = [getURL(url) for url in urls]
 		print(productList)
 
 conn.commit()	
