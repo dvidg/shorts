@@ -32,9 +32,9 @@ for category in cats:
 	c.execute("""SELECT URLs FROM categoryURLs WHERE category=?""", (category,))
 	urls = ast.literal_eval([i[0] for i in c.fetchall()][0])
 	
-	if (category == "Baggy-Shorts"):
-		
+	if (category == "Baggy-Shorts"):		
 		productList = [getURL(url) for url in urls]
-		print(productList)
+		productLinks = [item for sublist in productList for item in sublist]
+		print(productLinks)
 
 conn.commit()	
