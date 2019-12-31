@@ -39,7 +39,7 @@ for category in cats:
 		productList = [getURL(url) for url in urls]
 		productLinks = [item for sublist in productList for item in sublist]
 		for x in productLinks:
-			c.execute("""INSERT INTO itemURLs ("""+category+""") VALUES ("""+x+""");""")
+			c.execute("""INSERT INTO itemURLs ("""+category+""") VALUES (?)""", (str(x),))
 		print(productLinks)
 
 conn.commit()	
